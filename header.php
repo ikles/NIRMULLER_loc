@@ -32,18 +32,43 @@
 				<div class="contain">
 					<div class="top__row">
 						<a href="/" class="logo"><img src="<? bloginfo('template_url') ?>/img/logo.svg"></a>
-						<div class="col-mnu">
-							<div class="hidden-mnu">
-								<a href="#" class="toggle-mnu"><span></span></a>
-							</div>
+						<div class="col-mnu">							
 							<?php wp_nav_menu('menu=top-mnu'); ?>
 						</div>
 						<div class="top__phone-lang">							
 							<a href="tel:<?php echo get_field('phone_number'); ?>" class="top__phone"><?php echo get_field('phone_number'); ?></a>
 							<div class="top__lang"><img src="<? bloginfo('template_url') ?>/img/lang.svg" /></div>
 						</div>
+						<div class="hidden-mnu">
+							<a href="#" class="toggle-mnu"><span></span></a>
+						</div>
 					</div>
 				</div>
-			</div>
+				<div class="pda__menu-w">
+					<div class="contain">
+						<div class="pda__menu">
+							<div class="col-mnu">							
+								<?php wp_nav_menu('menu=top-mnu'); ?>
+							</div>
+							<div class="top__lang"><img src="<? bloginfo('template_url') ?>/img/lang2.png" />English (EN)</div>
+
+							<div class="pda__bottom">
+								<div class="social pda__social">
+									<a href="<?php echo get_field('social_link_1'); ?>" class="social__it"><img src="<?php echo get_field('social_img_1'); ?>" /></a>
+									<a href="<?php echo get_field('social_link_2'); ?>" class="social__it"><img src="<?php echo get_field('social_img_2'); ?>" /></a>
+									<a href="<?php echo get_field('social_link_3'); ?>" class="social__it"><img src="<?php echo get_field('social_img_3'); ?>" /></a>
+								</div>
+								<div class="pda__text">
+									<?php echo get_field('our_manager_will_advise'); ?>						
+								</div>
+								<a href="tel:<?php echo get_field('phone_number'); ?>" class="pda__phone"><?php echo get_field('phone_number'); ?></a>
+								<a href="#" class="btn pda__btn">Consultation</a>
+							</div><!--pda__bottom-->
+
+						</div><!--pda__menu-->
+					</div>
+				</div><!--pda__menu-w-->
+			</div><!--top-->
+
 			<?php wp_reset_postdata(); ?>
 		</header>

@@ -1,186 +1,201 @@
 <?php get_header(); ?>
-<div class="bread">
+
+<div class="pagebanner__w">
+<div class="pagebanner">
   <div class="contain">
-    <div class="bread-w">
-      <?php the_breadcrumb(); ?>
-    </div>
-  </div>
-</div><!--bread-->
-<div class="post">
-  <div class="contain">
-    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-
-      <div class="post-img-w">
-        <?php
-        echo '<img src="';
-        echo the_post_thumbnail_url('news-img');
-        echo '" alt="news-img">';
-        ?>
-      </div><!--post-img-w-->
-      <div class="post-title">
-        <?php the_title(); ?>
-      </div>
-      <div class="post-cat-date">
-        <div class="post-cat">
-          <?php
-          $category = get_the_category(); 
-          $n_ID = $category[0]->cat_ID;            
-          echo '<a href="';
-          echo get_category_link($n_ID);
-          echo '">';
-          echo $category[0]->name;
-          echo '</a>';
-          ?>
-        </div><!--post-cat-->
-        <div class="post-sep">|</div>
-        <div class="post-date">          
-          <?php the_date('d M Y'); ?>
-        </div><!--post-date-->
-      </div><!--post-cat-date-->
-      <div class="post-content">
-        <?php the_content(); ?>
-      </div><!--post-content-->
-    <?php endwhile; ?>
-    <?php else: ?>
-    <?php endif; ?>
-  </div><!--cont-->
-
-  <div class="comments">
-    <div class="contain">
-      <div class="comments-title">Comments</div>
-
-      <div class="commentlist-w">
-
-        <ul class="commentlist">
-          <?php        
-          $post_id = get_queried_object_id();              
-
-
-
-
-          $args =  [
-          //custom_comment( [
-            'post_id' => $post_id,
-            'status' => 'approve',
-            'walker'            => null,
-            'max_depth'         => '',
-            'style'             => 'ul',
-            'callback'          => null,
-            'end-callback'      => null,
-            'type'              => 'all',
-            'reply_text'        => 'Reply',
-            'page'              => '',
-            'per_page'          => '',
-            'avatar_size'       => 64,
-            'reverse_top_level' => null,
-            'reverse_children'  => '',
-    'format'            => 'html5', // или xhtml, если HTML5 не поддерживается темой
-    'short_ping'        => false,    // С версии 3.6,
-    'echo'              => true,     // true или false
-  ]; 
-  $comments = get_comments( $args );
-  foreach( $comments as $comment ){
-  }        
-
-  ?>
-  <?php wp_list_comments( $args, $comments ); ?>
-  <?
-
-  ?>
-</ul>
-</div><!--commentlist-w-->
-
-<?php
-
-$commenter = wp_get_current_commenter();
-$defaults = [
-  'fields'               => [
-    'author' => '<input placeholder="Name" id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ). '"' . $aria_req . $html_req . ' />',
-    'email'  => '<input placeholder="Your email*" id="email" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30" aria-describedby="email-notes"' . $aria_req . $html_req  . ' />',      
-    'cookies' => ''
-  ],
-  'comment_field'        => '<textarea placeholder="Comment" id="comment" name="comment" cols="45" rows="8"  aria-required="true" required="required"></textarea>',  
-  'label_submit'         => __( 'Submit' ),
-  'id_form'              => 'comments',       
-  'comment_notes_before' => '',
-  'comment_notes_after' => '',
-  'title_reply'          => __( 'Leave a Comment' ),
-];
-
-comment_form( $defaults );
-?>
-
-
-</div>
-</div><!--comments-->
-
-
-<div class="related">
-  <div class="related-head">
-    <div class="contain">
-      <h2 class="like-h2">You May Also Like</h2>
-    </div>
-  </div><!--related-head-->
-  <div class="related-w">
-    <div class="related-items">
-
-      <?
-      $args = array( 'posts_per_page' => 2, 'post__not_in' => array($post->ID) );
-      $query = new WP_Query( $args );
-      while ( $query->have_posts() ) {
-        $query->the_post();
-
-
-        echo '<div class="news-item"><div class="contain"><div class="blog-item-w">';
-        echo '<div class="news-r blog-r"><div class="join-txt-3 news-txt-3">';
-        $category = get_the_category(); 
-        $n_ID = $category[0]->cat_ID;
-        //p_a($category);        
-        echo '<a href="';
-        echo get_category_link($n_ID);
-        echo '">';
-        echo $category[0]->name;
-        echo '</a>';
-
-        echo '</div><div class="join-txt-2">';
-        echo the_title();
-        echo '</div><div class="news-desc">';
-        echo get_field('short_description');
-        echo '</div> <div class="news-butt-wrap">';
-        echo '<a href="';
-        echo the_permalink();
-        echo '" class="butt-o">Read more</a></div></div><!--news-r-->';
-        echo '<div class="news-l blog-l">';
-        echo '<img src="';
-        echo the_post_thumbnail_url('news-img');
-        echo '" alt="news-img"></div>';
-        echo '</div></div></div>';
-
-
-      }
-      wp_reset_postdata();
-      ?>
-
-
-
-    </div><!--news-items-->
-  </div>
-</div>
-</div><!--post-->
-<div class="subscr">
-  <?php
-  $post = get_post(21);
-  ?>  
-  <div class="contain">
-    <div class="subscr-w">
-      <div class="subscr-desc"><?php echo get_field('subscribe_text'); ?></div>
-      <div class="subscr-form-wrap">
-        <div class="hor-form subscr-form">
-          <div id="valid"></div>
-          <?php echo do_shortcode('[contact-form-7 id="158" title="join-form"]'); ?>
+    <div class="pagebanner__inn">
+      <div class="bread__w">
+          <?php the_breadcrumb(); ?>
         </div>
-      </div><!--subscr-form-wrap-->
+      <div class="pagebanner__tit">Having a business name does not separate</div>
+      <div class="posted">Posted on <a href="#" class="posted__date"><?php the_date('d M Y'); ?></a></div>
     </div>
-  </div>    
+  </div>
 </div>
+</div>
+<div class="page">
+  <div class="contain">
+    <div class="cols">
+      <div class="cols__l">        
+
+        <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+          
+          
+            <?php the_title(); ?>
+          
+          
+              <?php
+              $category = get_the_category(); 
+              $n_ID = $category[0]->cat_ID;            
+              echo '<a href="';
+              echo get_category_link($n_ID);
+              echo '">';
+              echo $category[0]->name;
+              echo '</a>';
+              ?>          
+            <?php the_content(); ?>
+          
+        <?php endwhile; ?>
+      <?php else: ?>
+      <?php endif; ?>
+    </div><!--cols__l-->
+    <div class="cols__r">
+      <div class="search">        
+        <div class="search__lbl">
+          <?php get_search_form(); ?>
+          <div class="search__lbl-txt">search all over the site</div>
+        </div>
+      </div>
+      
+      <div class="consult">
+        <?php $post = get_post(199); ?>
+        <div class="consult__img-w">
+          <img src="<? bloginfo('template_url') ?>/img/banner-icon.png">
+        </div>
+        <div class="consult__txt-1">
+          <?php echo get_field('startup'); ?>          
+        </div>
+        <div class="consult__txt-2">
+          <?php echo get_field('also_known_as'); ?>          
+        </div>
+        <div class="consult__txt-3">
+          <?php echo get_field('who_provides'); ?>          
+        </div>
+        <?php echo get_field('consult_btn'); ?>        
+        <?php wp_reset_query(); ?>
+      </div>
+
+      <div class="mostpop">
+        <div class="mostpop__tit">Most Popular</div>
+        <div class="mostpop__list-w">
+          <ul class="mostpop__list">
+
+            <?
+            $args = array( 'posts_per_page' => 10, 'category__not_in' => array(1), 'post__not_in' => [$post->ID] );
+            $query = new WP_Query( $args );
+            while ( $query->have_posts() ) {
+              $query->the_post();
+
+
+              echo '<li class="mostpop__item">';
+              $category = get_the_category(); 
+              $n_ID = $category[0]->cat_ID;
+        //p_a($category);        
+              echo '<a class="mostpop__cat" href="';
+              echo get_category_link($n_ID);
+              echo '">';
+              echo $category[0]->name;
+              echo '</a>';
+
+              echo '<a href="';
+              echo the_permalink();
+              echo '" class="mostpop__it-title">';
+              echo the_title();            
+              echo '</a></li>';
+            }
+            wp_reset_postdata();
+            ?>
+          </ul>
+        </div><a href="#" class="more__btn">Show more<i class="more__btn-icon"></i></a>
+      </div>
+    </div><!--cols__r-->
+  </div><!--cols-->
+</div>
+</div><!--page-->
+
+<div class="startup__w">
+  <div class="startup">
+    <?php $post = get_post(29); ?>
+    <div class="contain">
+      <div class="startup__row">
+        <div class="startup__left">
+          <div class="startup__tiltle">
+            <?php echo get_field('startup'); ?>
+          </div>
+          <div class="startup__subtiltle">
+            <?php echo get_field('also_known'); ?>          
+          </div>
+          <div class="startup__text">
+            <?php echo get_field('who_provides'); ?>          
+          </div>
+          <?php echo get_field('btn'); ?>          
+        </div>
+        <div class="startup__right">
+          <div class="form">
+            <div class="form__top">
+              <div class="form__img-w">
+                <img src="<? bloginfo('template_url') ?>/img/icon.svg" />
+                <div class="form__slogan">StartUp</div>
+              </div>
+              <div class="form__content">
+                <p class="form__p">                
+                  <?php echo get_field('form_text_1'); ?>
+                </p>
+                <p class="form__p-2">
+                  <?php echo get_field('form_text_2'); ?>                  
+                </p>
+                <div class="form__gray-txt">
+                  <?php echo get_field('form_text_3'); ?>                
+                </div>
+                <?php echo get_field('form_text_list'); ?>    
+              </div>
+            </div>
+            <div class="form__bot form__main">
+              <?php echo do_shortcode('[wpforms id="44" title="false" description="false"]'); ?>
+            </div>
+          </div>
+          <div class="most-popular">          
+            <?php echo get_field('most_popular'); ?>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php wp_reset_query(); ?>
+  </div>
+</div><!--strtup-->
+
+
+<div class="pubs">          
+  <div class="contain">
+    <div class="pubs__heading heading-2">
+      We recommend reading
+      <?php echo get_field('publications'); ?>      
+    </div>
+  </div>
+  <div class="pubs__its-w">
+    <div class="pubs__its">
+      <?php if ( have_posts() ) : query_posts(array('posts_per_page' => 100, 'cat' => 3)); ?>
+        <?php while (have_posts()) : the_post(); ?>
+          <div class="pubs__col">
+            <div class="pubs__it">
+              <div class="pubs__it-img-w">
+                <img src="<?php the_post_thumbnail_url('');?>" alt="">
+              </div>
+              <div class="pubs__txts">
+                <?php
+                $news_cat_link = get_category_link(3);                
+                ?>
+                <a href="<?php echo $news_cat_link; ?>" class="pubs__txt-1">
+                  <?php echo get_the_category()[0]->name ?>
+                </a>              
+                <a href="<?php the_permalink(); ?>" class="pubs__txt-2">   <?php the_title(); ?>             
+              </a>
+              <div class="pubs__txt-3">
+                <?php the_content(); ?>                
+              </div>
+            </div>
+            <?php
+            if (get_field('popular')) { ?>
+              <a href="" class="pubs__label"><?php echo get_field('popular'); ?></a>
+            <?php } ?>
+          </div>
+        </div>
+      <?php endwhile; ?>
+    <?php endif; wp_reset_query(); ?>
+  </div><!--its-->
+</div>
+</div>
+
+
+
 <?php get_footer(); ?>

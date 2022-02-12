@@ -1,100 +1,132 @@
 <? get_header(); ?>
-  <div class="bread">
-    <div class="contain">
-      <div class="bread-w">
-        <a href="/">Main</a> <i><span class="bread-arr"></span></i> <?php _e( 'Search results for: '); ?>
-			<span class="bread-search"><?php echo get_search_query(); ?>...</span>
-      </div>
-    </div>
-  </div><!--bread-->
-<div class="blog-head">
-	<div class="contain">   
-		<h1>
-			<?php _e( 'Search results for: ', 'twentynineteen' ); ?>
-			<span class="page-description"><?php echo get_search_query(); ?>...</span>
-		</h1>
-	</div>
-</div><!--blog-head-->
-<div class="blog-sort-search">
-	<div class="contain">
-		<div class="sort-w">
-			<div class="sort-wrap">
-				<div class="sort-span"><div>Show me: </div> <span></span></div>
-				<ul class="sort">
-					<?php             
-    //link to news cat    
-    //$news_cat_link = get_category_link($parent_id);
-					$news_cat_link = get_category_link(4);
-					echo "<li class='cat-item current-all'><a href='$news_cat_link'>All posts</a></li>";
-					$args = array(
-						'child_of' => 4,
-						'title_li' => false
-					);
-					?>
-					<?php wp_list_categories( $args ); ?>
-				</ul><!--sort-->
-			</div><!--sort-wrap-->
-			<div class="search-w">
-				<form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">            
-					<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search …', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>" />            
-					<input type="submit" class="search-submit" value="<?php echo esc_attr_x( 'Search', 'submit button' ) ?>" />
-				</form>
-			</div>
-		</div><!--sort-w-->
-	</div><!--contain-->
-</div><!--blog-sort-search-->
-<div class="blog-items blog-items-search">  
-	<div class="blog-w">
-		<div class="blog-news-items">
-			<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>   
-				<?php
-				echo '<div class="news-item"><div class="contain"><div class="blog-item-w">';
-				echo '<div class="news-r blog-r"><div class="join-txt-3 news-txt-3">';
-				$category = get_the_category(); 
-				$n_ID = $category[0]->cat_ID;
-        //p_a($category);        
-				echo '<a href="';
-				echo get_category_link($n_ID);
-				echo '">';
-				echo $category[0]->name;
-				echo '</a>';
 
-				echo '</div><div class="join-txt-2">';
-				echo the_title();
-				echo '</div><div class="news-desc">';
-				echo get_field('short_description');
-				echo '</div> <div class="news-butt-wrap">';
-				echo '<a href="';
-				echo the_permalink();
-				echo '" class="butt-o">Read more</a></div></div><!--news-r-->';
-				echo '<div class="news-l">';
-				echo '<img src="';
-				echo the_post_thumbnail_url('news-img');
-				echo '" alt="news-img"></div>';
-				echo '</div></div></div>';
 
-				?>        
-			<?php endwhile; ?>
-			<?php else: ?>
-				<div class="blog-items">  
-					<div class="blog-w">
-						<div class="blog-news-items">
-							<div class="contain">
-								<div class="no-res">
-									<p>No results, try again...</p>
-								</div>
-							</div>
-						</div>
-					</div>
+
+
+
+
+
+
+
+<div class="pagebanner__w">
+	<div class="pagebanner">
+		<div class="contain">
+			<div class="pagebanner__inn">
+				<div class="bread__w">
+					<a href="/">Main</a> <i><span class="bread-arr"></span></i> <?php _e( 'Search results for: '); ?>
+					<span class="bread-search"><?php echo  get_search_query(); ?>...</span>
 				</div>
-			<?php endif; ?>    
-		</div><!--news-items-->
+				<div class="pagebanner__tit"><?php echo 'Search results for: '.get_search_query(); ?>...</div>				
+			</div>
+		</div>
 	</div>
 </div>
 
 
-<div class="pagination">
+
+<div class="page">
 	<div class="contain">
+		<div class="cols">
+			<div class="cols__l">
+
+				<div class="search__heading heading-2">
+					<?php echo 'Search results for: '.get_search_query(); ?>
+				</div>
+
+
+				<div class="search__list">
+					<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+
+						<div class="search__item">
+							<a href="<?php echo the_permalink(); ?>" class="heading-4">
+								<?php the_title(); ?>
+							</a>						
+							<p class="search__desc">
+								<?php the_content(); ?>
+							</p>
+							<?php
+							echo '<a href="';
+							echo the_permalink();
+							echo '" class="mostpop__it-title">Read more...</a>';
+							?>
+						</div>
+					<?php endwhile; ?>			
+				<?php else: ?>
+
+					<div class="contain">
+						<div class="no-res">
+							<p>No results, try again...</p>
+						</div>
+					</div>
+
+				<?php endif; ?>    
+			</div>
+		</div>
+
+
+
+		<div class="cols__r">
+			<div class="search">        
+				<div class="search__lbl">
+					<?php get_search_form(); ?>
+					<div class="search__lbl-txt">search all over the site</div>
+				</div>
+			</div>
+
+			<div class="consult">
+				<?php $post = get_post(199); ?>
+				<div class="consult__img-w">
+					<img src="<? bloginfo('template_url') ?>/img/banner-icon.png">
+				</div>
+				<div class="consult__txt-1">
+					<?php echo get_field('startup'); ?>          
+				</div>
+				<div class="consult__txt-2">
+					<?php echo get_field('also_known_as'); ?>          
+				</div>
+				<div class="consult__txt-3">
+					<?php echo get_field('who_provides'); ?>          
+				</div>
+				<?php echo get_field('consult_btn'); ?>        
+				<?php wp_reset_query(); ?>
+			</div>
+
+			<div class="mostpop">
+				<div class="mostpop__tit">Most Popular</div>
+				<div class="mostpop__list-w">
+					<ul class="mostpop__list">
+
+						<?
+						$args = array( 'posts_per_page' => 10, 'category__not_in' => array(1), 'post__not_in' => [$post->ID] );
+						$query = new WP_Query( $args );
+						while ( $query->have_posts() ) {
+							$query->the_post();
+
+
+							echo '<li class="mostpop__item">';
+							$category = get_the_category(); 
+							$n_ID = $category[0]->cat_ID;
+        //p_a($category);        
+							echo '<a class="mostpop__cat" href="';
+							echo get_category_link($n_ID);
+							echo '">';
+							echo $category[0]->name;
+							echo '</a>';
+
+							echo '<a href="';
+							echo the_permalink();
+							echo '" class="mostpop__it-title">';
+							echo the_title();            
+							echo '</a></li>';
+						}
+						wp_reset_postdata();
+						?>
+					</ul>
+				</div><a href="#" class="more__btn">Show more<i class="more__btn-icon"></i></a>
+			</div>
+		</div><!--cols__r-->
+	</div><!--cols-->
+	<div class="pagination">	
 		<div class="pagination-w">
 			<?php
 //Пагинация
@@ -106,9 +138,13 @@
 				'total' => $wp_query->max_num_pages
 			) );
 			?>
-		</div>
-	</div>
+		</div>	
 </div>
+</div>
+</div>
+
+
+
 
 
 

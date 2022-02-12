@@ -63,10 +63,46 @@
 					<a href="<?php echo get_field('social_link_3'); ?>" class="social__it"><img src="<?php echo get_field('social_img_3'); ?>" /></a>
 				</div>
 			</div>
+
+			<div class="show-991 footer__pda-texts">
+				<div class="footer__text-2">
+					<?php echo get_field('this_site_is_an_independentinformation_portal'); ?>					
+				</div>
+				<div class="footer__text-3">
+					<?php echo get_field('buisness_strategy'); ?>					
+				</div>
+				<div class="footer__text-3">
+					<?php echo get_field('social_media_marketing'); ?>					
+				</div>
+			</div>
+
 		</div>
 	</div>
 </footer>
 <a href="#wrapper" class="to-top" data-scroll="wrapper"></a>
+
+
+<div class="modal-overlay modal-overlay_1">        
+	<div class="modal-form__layout"></div>
+	<div class="modal-form__block">
+		<span class="modal-close modal-close_1"></span>
+		<div class="modal-form__inner">						
+			<div class="modal-form__form-w">
+				<div class="modal-form__txt-1">Back call</div>
+				<div class="modal-form__txt-2">provides advice and further purposeful activities
+				in an area of specialization</div>	
+
+				<?php echo do_shortcode('[wpforms id="197" title="false" description="false"]'); ?>
+
+				<div class="modal-form__info">as soon as possible we will call you back <br>
+				and answer all your questions</div>
+			</div>
+
+		</div>
+	</div>
+</div><!--modal-overlay-->
+
+
 </div>
 <!--wrapper-->
 
@@ -80,7 +116,4 @@
 
 
 
-	<!-- <?php
-	$post = get_post(104);
-?> -->
 

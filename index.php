@@ -1,82 +1,81 @@
 <?php get_header(); ?>
 <main class="main">
   <?php $post = get_post(13); ?>
-  <div class="banner">
-    <div class="banner__inner">
-      <div class="contain">
-        <div class="banner__row">
-          <div class="banner__content">
-            <div class="banner__uptitle">
-              <?php echo get_field('chess_business_consulting'); ?>
-            </div>
-            <div class="banner__title">
-              <?php echo get_field('we_put_the_up_and_start_up'); ?>
-            </div>                
-            <div class="banner__text">
-              <?php echo get_field('buisness_strategy'); ?>
-            </div>
-            <div class="banner__btns">
-              <?php echo get_field('btns'); ?>
-
+  <div class="banner__w">
+    <div class="banner">
+      <div class="banner__inner">
+        <div class="contain">
+          <div class="banner__row">
+            <div class="banner__content">
+              <div class="banner__uptitle">
+                <?php echo get_field('chess_business_consulting'); ?>
+              </div>
+              <div class="banner__title">
+                <?php echo get_field('we_put_the_up_and_start_up'); ?>
+              </div>                
+              <div class="banner__text">
+                <?php echo get_field('buisness_strategy'); ?>
+              </div>
+              <div class="banner__btns">
+                <?php echo get_field('btns'); ?>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <img src="<? bloginfo('template_url') ?>/img/banner.jpg" class="banner__img" />
+      <?php wp_reset_postdata(); ?>
     </div>
-    <img src="<? bloginfo('template_url') ?>/img/banner.jpg" class="banner__img" />
-    <?php wp_reset_postdata(); ?>
   </div><!--banner-->
-  <div class="startup">
-    <?php $post = get_post(29); ?>
-    <div class="contain">
-      <div class="startup__row">
-        <div class="startup__left">
-          <div class="startup__tiltle">
-            <?php echo get_field('startup'); ?>
+  <div class="startup__w">
+    <div class="startup">
+      <?php $post = get_post(29); ?>
+      <div class="contain">
+        <div class="startup__row">
+          <div class="startup__left">
+            <div class="startup__tiltle">
+              <?php echo get_field('startup'); ?>
+            </div>
+            <div class="startup__subtiltle">
+              <?php echo get_field('also_known'); ?>          
+            </div>
+            <div class="startup__text">
+              <?php echo get_field('who_provides'); ?>          
+            </div>
+            <?php echo get_field('btn'); ?>          
           </div>
-          <div class="startup__subtiltle">
-            <?php echo get_field('also_known'); ?>          
-          </div>
-          <div class="startup__text">
-            <?php echo get_field('who_provides'); ?>          
-          </div>
-          <?php echo get_field('btn'); ?>          
-        </div>
-        <div class="startup__right">
-          <div class="form">
-            <div class="form__top">
-              <div class="form__img-w">
-                <img src="<? bloginfo('template_url') ?>/img/icon.svg" />
-                <div class="form__slogan">StartUp</div>
-              </div>
-              <div class="form__content">
-                <p class="form__p">                
-                  <?php echo get_field('form_text_1'); ?>
-                </p>
-                <p class="form__p-2">
-                  <?php echo get_field('form_text_2'); ?>                  
-                </p>
-                <div class="form__gray-txt">
-                  <?php echo get_field('form_text_3'); ?>                
+          <div class="startup__right">
+            <div class="form">
+              <div class="form__top">
+                <div class="form__img-w">
+                  <img src="<? bloginfo('template_url') ?>/img/icon.svg" />
+                  <div class="form__slogan">StartUp</div>
                 </div>
-                <?php echo get_field('form_text_list'); ?>    
+                <div class="form__content">
+                  <p class="form__p">                
+                    <?php echo get_field('form_text_1'); ?>
+                  </p>
+                  <p class="form__p-2">
+                    <?php echo get_field('form_text_2'); ?>                  
+                  </p>
+                  <div class="form__gray-txt">
+                    <?php echo get_field('form_text_3'); ?>                
+                  </div>
+                  <?php echo get_field('form_text_list'); ?>    
+                </div>
+              </div>
+              <div class="form__bot form__main">
+                <?php echo do_shortcode('[wpforms id="44" title="false" description="false"]'); ?>
               </div>
             </div>
-
-
-
-
-            <div class="form__bot form__main">
-              <?php echo do_shortcode('[wpforms id="44" title="false" description="false"]'); ?>
+            <div class="most-popular">          
+              <?php echo get_field('most_popular'); ?>
             </div>
-          </div>
-          <div class="most-popular">          
-            <?php echo get_field('most_popular'); ?>
           </div>
         </div>
       </div>
+      <?php wp_reset_query(); ?>
     </div>
-    <?php wp_reset_query(); ?>
   </div><!--strtup-->
 
   <div class="apply">
@@ -190,6 +189,7 @@
           <img src="<? bloginfo('template_url') ?>/img/man.svg" class="advantages__img" />
         </div>
         <div class="advantages__r">
+<div class="advantages__heading-info">
           <div class="advantages__heading heading-2">
             <?php echo get_field('our_advantages'); ?>          
           </div>
@@ -208,7 +208,7 @@
             <?php echo get_field('advantages-btn'); ?>
             <a href="#" class="advantages__btn btn-o">Consultation</a>
           </div>
-
+        </div>
           <div class="advantages__its">
             <div class="advantages__col">
               <div class="advantages__it">
@@ -340,11 +340,11 @@
         
 
         
-  
+
 
 
         
-          <div class="video js-video video__r" data-youtube="sfkmJ0O_-o0">
+        <div class="video js-video video__r" data-youtube="sfkmJ0O_-o0">
 
           <img src="<?php echo get_field('video_img'); ?>" class="video__img" />
           <div class="video__cont">

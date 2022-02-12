@@ -1,24 +1,16 @@
 @media (max-width : 768px) {
-    .top-mnu {
+  .top-mnu {
     display: none;
-    position: absolute;
-    left: 0;
-    top: 59px;
-    z-index: 12;
-    background-color: #FFF; 
-    width: 100%;
-    padding: 10px 45px 40px 15px;
-    min-height: 100px;
-    .top-ul {
-      display: block;
+    
+    ul {
+      
       li {
-        margin-bottom: 24px;
+        
       }
       a {
-        font-size: 20px;
-      }
-    }    
         
+      }
+    }            
   }
   .hidden-mnu {
     display: block;      
