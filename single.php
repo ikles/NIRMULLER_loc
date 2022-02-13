@@ -1,105 +1,135 @@
 <?php get_header(); ?>
 
 <div class="pagebanner__w">
-<div class="pagebanner">
-  <div class="contain">
-    <div class="pagebanner__inn">
-      <div class="bread__w">
+  <div class="pagebanner">
+    <div class="contain">
+      <div class="pagebanner__inn">
+        <div class="bread__w">
           <?php the_breadcrumb(); ?>
         </div>
-      <div class="pagebanner__tit">Having a business name does not separate</div>
-      <div class="posted">Posted on <a href="#" class="posted__date"><?php the_date('d M Y'); ?></a></div>
+        <div class="pagebanner__tit"><?php the_title(); ?></div>
+        <div class="posted">Posted on <a href="#" class="posted__date"><?php the_date('d M Y'); ?></a></div>
+      </div>
     </div>
   </div>
 </div>
-</div>
 <div class="page">
   <div class="contain">
-    <div class="cols">
-      <div class="cols__l">        
+    <div class="page__inn">
+      <div class="cols">
+        <div class="cols__l">        
+          <div class="content">
+            <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+              <?php the_content(); ?>
+              <div class="author__social-w">
+                <div class="author">
+                  <div class="author__img-w">
+                    <?php echo get_avatar( $id_or_email, $size, $default, $alt, $args ); ?>
+                  </div>
+                  <div class="author__content">
+                    <div class="author__name">
+                      <?php $author = get_the_author(); echo $author; ?>
+                    </div>
+                    <div class="author__author">author
+                    </div>
+                  </div>
+                </div><!--author-->
+                <div class="author__socials">
+                  <?php if( get_field('author_social_link_1') ): ?>
+                    <a class="author__social" href="<?php echo get_field('author_social_link_1'); ?>">
+                      <img src="<?php echo get_field('author_social_img_1'); ?>" />
+                    </a>
+                  <?php endif; ?>
+                  <?php if( get_field('author_social_link_2') ): ?>
+                    <a class="author__social" href="<?php echo get_field('author_social_link_2'); ?>">
+                      <img src="<?php echo get_field('author_social_img_2'); ?>" />
+                    </a>
+                  <?php endif; ?>
+                  <?php if( get_field('author_social_link_3') ): ?>
+                    <a class="author__social" href="<?php echo get_field('author_social_link_3'); ?>">
+                      <img src="<?php echo get_field('author_social_img_3'); ?>" />
+                    </a>
+                  <?php endif; ?>
+                  <?php if( get_field('author_social_link_4') ): ?>
+                    <a class="author__social" href="<?php echo get_field('author_social_link_4'); ?>">
+                      <img src="<?php echo get_field('author_social_img_4'); ?>" />
+                    </a>
+                  <?php endif; ?>
+                  <?php if( get_field('author_social_link_5') ): ?>
+                    <a class="author__social" href="<?php echo get_field('author_social_link_5'); ?>">
+                      <img src="<?php echo get_field('author_social_img_5'); ?>" />
+                    </a>
+                  <?php endif; ?>
+                </div>
+              </div>
 
-        <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-          
-          
-            <?php the_title(); ?>
-          
-          
-              <?php
-              $category = get_the_category(); 
-              $n_ID = $category[0]->cat_ID;            
-              echo '<a href="';
-              echo get_category_link($n_ID);
-              echo '">';
-              echo $category[0]->name;
-              echo '</a>';
-              ?>          
-            <?php the_content(); ?>
-          
-        <?php endwhile; ?>
-      <?php else: ?>
-      <?php endif; ?>
-    </div><!--cols__l-->
-    <div class="cols__r">
-      <div class="search">        
-        <div class="search__lbl">
-          <?php get_search_form(); ?>
-          <div class="search__lbl-txt">search all over the site</div>
+            <?php endwhile; ?>
+          <?php else: ?>
+          <?php endif; ?>
+        </div><!--content-->
+      </div><!--cols__l-->
+      <div class="cols__r">
+        <div class="search">        
+          <div class="search__lbl">
+            <?php get_search_form(); ?>
+            <div class="search__lbl-txt">search all over the site</div>
+          </div>
         </div>
-      </div>
-      
-      <div class="consult">
-        <?php $post = get_post(199); ?>
-        <div class="consult__img-w">
-          <img src="<? bloginfo('template_url') ?>/img/banner-icon.png">
-        </div>
-        <div class="consult__txt-1">
-          <?php echo get_field('startup'); ?>          
-        </div>
-        <div class="consult__txt-2">
-          <?php echo get_field('also_known_as'); ?>          
-        </div>
-        <div class="consult__txt-3">
-          <?php echo get_field('who_provides'); ?>          
-        </div>
-        <?php echo get_field('consult_btn'); ?>        
-        <?php wp_reset_query(); ?>
-      </div>
 
-      <div class="mostpop">
-        <div class="mostpop__tit">Most Popular</div>
-        <div class="mostpop__list-w">
-          <ul class="mostpop__list">
+        <div class="consult">
+          <?php $post = get_post(199); ?>
+          <div class="consult__img-w">
+            <img src="<? bloginfo('template_url') ?>/img/banner-icon.png">
+          </div>
+          <div class="consult__txt-1">
+            <?php echo get_field('startup'); ?>          
+          </div>
+          <div class="consult__txt-2">
+            <?php echo get_field('also_known_as'); ?>          
+          </div>
+          <div class="consult__txt-3">
+            <?php echo get_field('who_provides'); ?>          
+          </div>
+          <?php echo get_field('consult_btn'); ?>        
+          <?php wp_reset_query(); ?>
+        </div>
 
-            <?
-            $args = array( 'posts_per_page' => 10, 'category__not_in' => array(1), 'post__not_in' => [$post->ID] );
-            $query = new WP_Query( $args );
-            while ( $query->have_posts() ) {
-              $query->the_post();
+        <div class="mostpop">
+          <div class="mostpop__tit">Most Popular</div>
+          <div class="mostpop__list-w">
+            <ul class="mostpop__list">
+
+              <?
+              $args = array( 'posts_per_page' => 10, 'category__not_in' => array(1), 'post__not_in' => [$post->ID] );
+              $query = new WP_Query( $args );
+              while ( $query->have_posts() ) {
+                $query->the_post();
 
 
-              echo '<li class="mostpop__item">';
-              $category = get_the_category(); 
-              $n_ID = $category[0]->cat_ID;
+                echo '<li class="mostpop__item">';
+                $category = get_the_category(); 
+                $n_ID = $category[0]->cat_ID;
         //p_a($category);        
-              echo '<a class="mostpop__cat" href="';
-              echo get_category_link($n_ID);
-              echo '">';
-              echo $category[0]->name;
-              echo '</a>';
+                echo '<a class="mostpop__cat" href="';
+                echo get_category_link($n_ID);
+                echo '">';
+                echo $category[0]->name;
+                echo '</a>';
 
-              echo '<a href="';
-              echo the_permalink();
-              echo '" class="mostpop__it-title">';
-              echo the_title();            
-              echo '</a></li>';
-            }
-            wp_reset_postdata();
-            ?>
-          </ul>
-        </div><a href="#" class="more__btn">Show more<i class="more__btn-icon"></i></a>
-      </div>
-    </div><!--cols__r-->
-  </div><!--cols-->
+                echo '<a href="';
+                echo the_permalink();
+                echo '" class="mostpop__it-title">';
+                echo the_title();            
+                echo '</a></li>';
+              }
+              wp_reset_postdata();
+              ?>
+            </ul>
+          </div><a href="#" class="more__btn">Show more<i class="more__btn-icon"></i></a>
+        </div>
+      </div><!--cols__r-->
+    </div><!--cols-->
+  </div>
 </div>
 </div><!--page-->
 
